@@ -13,7 +13,7 @@
 //  - Que contient un cours ? Et un créneau ?
 //  - Comment accéder au prix du 2e cours ? Au 1er créneau du 3e cours ?
 // TODO : affichez `cours` dans la console avec console.log(), puis explorez-le.
-
+console.log(cours);
 
 // ------------------------------------------------------------
 // ÉTAPE 1 : Sélectionner les éléments du DOM
