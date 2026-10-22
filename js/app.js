@@ -96,14 +96,18 @@ cartes.forEach(function (carte) {
     console.log(selectedCourse);
     slotsContainer.innerHTML = '';
     selectedCourse.creneaux.forEach(function (item) {
-    console.log(item.id, item.jour, item.heure);  
+      console.log(item.id, item.jour, item.heure);
       let button = document.createElement('button');
-      button.innerHTML += `<button type="button" class="rounded-xl border px-4 py-2 text-sm font-medium transition border-teal-600 bg-teal-600 text-white" data-id=${item.id}>
+      button.innerHTML = `<button type="button" class="rounded-xl border px-4 py-2 text-sm font-medium transition border-teal-600 bg-teal-600 text-white" data-id=${item.id}>
         ${item.jour} <span class="font-normal">${item.heure}</span>`;
+        
+        button.addEventListener('click', function () {
+          console.log(item.id, item.jour, item.heure);
+        });
         slotsContainer.appendChild(button);
-      });
-});
+    });
   });
+});
 
 
 
