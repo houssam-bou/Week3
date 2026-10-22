@@ -24,22 +24,6 @@ console.log(cours);
 //  summary-count, summary-total, confirm-button, message
 // TODO : récupérez ces éléments et rangez-les dans des constantes.
 // Question : quelle est la différence entre getElementById et querySelector ?
-const coursesContainer = document.getElementById("courses-container");
-cours.forEach(function (course) {
-  let carte = document.createElement('article');
-
-  carte.innerHTML = `<article class=" cursor-pointer overflow-hidden rounded-2xl bg-white shadow-sm  transition hover:shadow-md" data-id=${course.id}>
-            <img src=${course.image} alt="Visuel du cours Yoga Flow" class="h-36 w-full object-cover" />
-            <div class="space-y-1 p-4">
-              <span class="inline-block rounded-full bg-teal-50 px-2.5 py-0.5 text-xs font-medium text-teal-700">${course.categorie}</span>
-              <h3 class="text-lg font-semibold text-slate-900">${course.nom}</h3>
-              <p class="text-sm text-slate-600">${course.duree}, avec ${course.coach}</p>
-              <p class="pt-1 text-base font-bold text-slate-900">${course.prix}€ <span class="text-sm font-normal text-slate-500">par place</span></p>
-            </div>
-            </article>`;
-
-  coursesContainer.appendChild(carte);
-});
 
 // ------------------------------------------------------------
 // ÉTAPE 2 : État de l'application
@@ -49,17 +33,6 @@ cours.forEach(function (course) {
 // Question : de quelles informations avez-vous besoin ?
 //  (cours choisi, créneau choisi, emplacements choisis...)
 // Indice : pourquoi un tableau est-il adapté pour les emplacements choisis ?
-let cartes = document.querySelectorAll('article')
-cartes.forEach(function (carte) {
-  carte.addEventListener('click', function () {
-    cartes.forEach(function (c) {
-      c.classList.remove('ring-2', 'ring-teal-600');
-    }); 
-    carte.classList.add('ring-2', 'ring-teal-600');
-  });
-});
-// coursesContainer.addEventListener('click', selectedCard);
-
 
 // ------------------------------------------------------------
 // ÉTAPE 3 : Afficher les cours (US01)
@@ -72,6 +45,21 @@ cartes.forEach(function (carte) {
 //  - Quelle boucle ou méthode de tableau allez-vous utiliser ?
 //  - Comment stocker l'id du cours sur la carte (indice : data-*) ?
 //  - Les template literals (`...${valeur}...`) peuvent-ils vous aider ?
+const coursesContainer = document.getElementById("courses-container");
+cours.forEach(function (course) {
+  let carte = document.createElement('article');
+
+  carte.innerHTML = `<article class="carte cursor-pointer overflow-hidden rounded-2xl bg-white shadow-sm transition hover:shadow-md" data-id=${course.id}>
+            <img src=${course.image} alt="Visuel du cours Yoga Flow" class="h-36 w-full object-cover" />
+            <div class="space-y-1 p-4">
+              <span class="inline-block rounded-full bg-teal-50 px-2.5 py-0.5 text-xs font-medium text-teal-700">${course.categorie}</span>
+              <h3 class="text-lg font-semibold text-slate-900">${course.nom}</h3>
+              <p class="text-sm text-slate-600">${course.duree}, avec ${course.coach}</p>
+              <p class="pt-1 text-base font-bold text-slate-900">${course.prix}€ <span class="text-sm font-normal text-slate-500">par place</span></p>
+              </div>
+              </article>`;
+  coursesContainer.appendChild(carte);
+});
 
 
 // ------------------------------------------------------------
@@ -85,6 +73,15 @@ cartes.forEach(function (carte) {
 //  - Faut-il un écouteur par carte, ou un seul sur le conteneur ? Quels sont les avantages ?
 //  - Comment retrouver le cours à partir de l'id lu dans la carte ?
 //  - Que faut-il réinitialiser quand on change de cours ?
+let cartes = document.querySelectorAll('article')
+cartes.forEach(function (carte) {
+  carte.addEventListener('click', function () {
+    cartes.forEach(function (carte) {
+      carte.classList.remove('ring-2', 'ring-teal-600');
+    });
+    carte.classList.add('ring-2', 'ring-teal-600');
+  });
+});
 
 
 // ------------------------------------------------------------
@@ -97,6 +94,17 @@ cartes.forEach(function (carte) {
 // Questions :
 //  - Quand cette fonction doit-elle être appelée ?
 //  - Que se passe-t-il si aucun cours n'est encore sélectionné ?
+const slotsContainer = document.getElementById('slots-container')
+cours.forEach(function (Creneaux) {
+  Creneaux.creneaux.forEach(function (item) {
+  console.log(item.id, item.jour, item.heure);  
+    let button = document.createElement('button');
+    button.innerHTML += `<button type="button" class="rounded-xl border px-4 py-2 text-sm font-medium transition border-teal-600 bg-teal-600 text-white" data-id=${item.id}>
+      ${item.jour} <span class="font-normal">${item.heure}</span>
+    </button>`
+    slotsContainer.appendChild(button);
+  });
+});
 
 
 // ------------------------------------------------------------
