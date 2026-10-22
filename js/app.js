@@ -73,6 +73,17 @@ cours.forEach(function (course) {
 //  - Faut-il un écouteur par carte, ou un seul sur le conteneur ? Quels sont les avantages ?
 //  - Comment retrouver le cours à partir de l'id lu dans la carte ?
 //  - Que faut-il réinitialiser quand on change de cours ?
+
+// ------------------------------------------------------------
+// ÉTAPE 5 : Afficher et sélectionner un créneau (US03)
+// ------------------------------------------------------------
+// TODO : affichez les créneaux du cours sélectionné.
+//  - Mettez à jour #selected-course-title avec le nom du cours.
+//  - Le créneau choisi doit être identifiable visuellement.
+//  - Changer de créneau doit vider la sélection d'emplacements.
+// Questions :
+//  - Quand cette fonction doit-elle être appelée ?
+//  - Que se passe-t-il si aucun cours n'est encore sélectionné ?
 let cartes = document.querySelectorAll('[data-id]')
 let slotsContainer = document.getElementById('slots-container');
 cartes.forEach(function (carte) {
@@ -94,16 +105,6 @@ cartes.forEach(function (carte) {
 });
   });
 
-// ------------------------------------------------------------
-// ÉTAPE 5 : Afficher et sélectionner un créneau (US03)
-// ------------------------------------------------------------
-// TODO : affichez les créneaux du cours sélectionné.
-//  - Mettez à jour #selected-course-title avec le nom du cours.
-//  - Le créneau choisi doit être identifiable visuellement.
-//  - Changer de créneau doit vider la sélection d'emplacements.
-// Questions :
-//  - Quand cette fonction doit-elle être appelée ?
-//  - Que se passe-t-il si aucun cours n'est encore sélectionné ?
 
 
 // ------------------------------------------------------------
