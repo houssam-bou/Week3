@@ -73,16 +73,26 @@ cours.forEach(function (course) {
 //  - Faut-il un écouteur par carte, ou un seul sur le conteneur ? Quels sont les avantages ?
 //  - Comment retrouver le cours à partir de l'id lu dans la carte ?
 //  - Que faut-il réinitialiser quand on change de cours ?
-let cartes = document.querySelectorAll('article')
+let cartes = document.querySelectorAll('[data-id]')
+let slotsContainer = document.getElementById('slots-container');
 cartes.forEach(function (carte) {
   carte.addEventListener('click', function () {
     cartes.forEach(function (carte) {
       carte.classList.remove('ring-2', 'ring-teal-600');
     });
     carte.classList.add('ring-2', 'ring-teal-600');
-  });
+    let selectedCourse = cours.find(iddd => iddd.id == carte.dataset.id);
+    console.log(selectedCourse);
+    slotsContainer.innerHTML = '';
+    selectedCourse.creneaux.forEach(function (item) {
+    console.log(item.id, item.jour, item.heure);  
+      let button = document.createElement('button');
+      button.innerHTML += `<button type="button" class="rounded-xl border px-4 py-2 text-sm font-medium transition border-teal-600 bg-teal-600 text-white" data-id=${item.id}>
+        ${item.jour} <span class="font-normal">${item.heure}</span>`;
+        slotsContainer.appendChild(button);
+      });
 });
-
+  });
 
 // ------------------------------------------------------------
 // ÉTAPE 5 : Afficher et sélectionner un créneau (US03)
@@ -94,17 +104,6 @@ cartes.forEach(function (carte) {
 // Questions :
 //  - Quand cette fonction doit-elle être appelée ?
 //  - Que se passe-t-il si aucun cours n'est encore sélectionné ?
-const slotsContainer = document.getElementById('slots-container')
-cours.forEach(function (Creneaux) {
-  Creneaux.creneaux.forEach(function (item) {
-  console.log(item.id, item.jour, item.heure);  
-    let button = document.createElement('button');
-    button.innerHTML += `<button type="button" class="rounded-xl border px-4 py-2 text-sm font-medium transition border-teal-600 bg-teal-600 text-white" data-id=${item.id}>
-      ${item.jour} <span class="font-normal">${item.heure}</span>
-    </button>`
-    slotsContainer.appendChild(button);
-  });
-});
 
 
 // ------------------------------------------------------------
